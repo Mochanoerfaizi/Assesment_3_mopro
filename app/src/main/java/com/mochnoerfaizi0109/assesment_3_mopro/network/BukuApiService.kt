@@ -10,10 +10,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-// URL BARU UNTUK API BUKU
 private const val BASE_URL = "https://api-buku-production-127f.up.railway.app/"
 
-// --- Model untuk request dan response Auth tetap sama ---
 data class GoogleLoginRequest(
     val token: String
 )
@@ -39,11 +37,11 @@ interface BukuApiService {
     @POST("api/auth/google")
     suspend fun loginWithGoogle(@Body request: GoogleLoginRequest): AuthResponse
 
-    // Get (Read) - ENDPOINT BARU
+
     @GET("api/buku")
     suspend fun getBuku(): List<Buku>
 
-    // Create - Disesuaikan untuk buku
+
     @Multipart
     @POST("api/buku")
     suspend fun addBuku(
@@ -53,7 +51,7 @@ interface BukuApiService {
         @Part gambar: MultipartBody.Part
     ): Buku
 
-    // Update - Disesuaikan untuk buku
+
     @Multipart
     @PUT("api/buku/{id}")
     suspend fun updateBuku(
@@ -64,7 +62,7 @@ interface BukuApiService {
         @Part gambar: MultipartBody.Part?
     ): Buku
 
-    // Delete - Disesuaikan untuk buku
+
     @DELETE("api/buku/{id}")
     suspend fun deleteBuku(
         @Header("Authorization") token: String,
