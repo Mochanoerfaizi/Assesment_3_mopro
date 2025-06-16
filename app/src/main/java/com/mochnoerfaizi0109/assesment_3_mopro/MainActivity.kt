@@ -33,11 +33,10 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        // DIUBAH: Tujuan awal sekarang adalah home_screen
+
                         startDestination = "home_screen"
                     ) {
-                        // DIHAPUS: Composable untuk splash screen tidak diperlukan lagi
-                        // composable("splash_screen") { SplashScreen(navController) }
+
 
                         composable("home_screen") { HomeScreen(navController) }
 

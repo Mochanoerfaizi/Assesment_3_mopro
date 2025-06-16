@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "auth_preferences")
 
-// Model untuk menampung semua data sesi
+
 data class UserSession(
     val token: String?,
     val userId: Int?,

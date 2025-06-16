@@ -238,7 +238,6 @@ fun ScreenContent(
     }
 }
 
-// com.farhansolih0009.assesment3.ui.screen/MainScreen.kt
 
 @Composable
 fun ListItem(
@@ -257,7 +256,7 @@ fun ListItem(
                     .data(buku.gambar)
                     .crossfade(true)
                     .build(),
-                // PERBAIKAN: Memberi deskripsi default jika nama buku null
+
                 contentDescription = buku.namaBuku ?: stringResource(id = R.string.gambar_buku),
                 contentScale = ContentScale.Crop,
                 placeholder = painterResource(id = R.drawable.loading_img),
@@ -271,7 +270,7 @@ fun ListItem(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(Modifier.weight(1f)) {
-                    // PERBAIKAN: Memberi nilai default jika nama atau penulis null
+
                     Text(
                         text = buku.namaBuku ?: stringResource(id = R.string.tanpa_judul),
                         style = MaterialTheme.typography.titleMedium,

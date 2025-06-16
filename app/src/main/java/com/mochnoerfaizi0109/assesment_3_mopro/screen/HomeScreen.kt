@@ -28,12 +28,12 @@ fun HomeScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Selamat Datang di Aplikasi OOTD", // Changed text
+            text = "Selamat Datang di Aplikasi bukupedia",
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.padding(bottom = 24.dp)
         )
         Button(onClick = { navController.navigate("main_screen") }) {
-            Text(text = stringResource(id = R.string.lihat_daftar_buku)) // Changed string resource
+            Text(text = stringResource(id = R.string.lihat_daftar_buku))
         }
     }
 }

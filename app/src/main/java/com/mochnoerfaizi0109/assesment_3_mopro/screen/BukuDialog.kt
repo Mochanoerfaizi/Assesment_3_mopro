@@ -26,7 +26,7 @@ import com.mochnoerfaizi0109.assesment_3_mopro.R
 fun BukuDialog(
     bitmap: Bitmap?,
     onDismissRequest: () -> Unit,
-    onConfirmation: (String, String) -> Unit // Menerima: namaBuku, penulisBuku
+    onConfirmation: (String, String) -> Unit
 ) {
     var namaBuku by remember { mutableStateOf("") }
     var penulisBuku by remember { mutableStateOf("") }

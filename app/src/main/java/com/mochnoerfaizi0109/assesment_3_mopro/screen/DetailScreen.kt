@@ -68,7 +68,6 @@ fun DetailScreen(navController: NavController, buku: Buku) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                // Beri nilai default jika namaBuku null
                 text = buku.namaBuku ?: stringResource(id = R.string.tanpa_judul),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold
@@ -77,7 +76,6 @@ fun DetailScreen(navController: NavController, buku: Buku) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                // Beri nilai default jika penulisBuku null
                 text = stringResource(id = R.string.penulis) + ": ${buku.penulisBuku ?: stringResource(id = R.string.tanpa_penulis)}",
                 style = MaterialTheme.typography.titleMedium
             )

@@ -5,9 +5,9 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mochnoerfaizi0109.assesment_3_mopro.model.Buku // Ganti ke Buku
+import com.mochnoerfaizi0109.assesment_3_mopro.model.Buku
 import com.mochnoerfaizi0109.assesment_3_mopro.network.AuthResponse
-import com.mochnoerfaizi0109.assesment_3_mopro.network.BukuApi // Ganti ke BukuApi
+import com.mochnoerfaizi0109.assesment_3_mopro.network.BukuApi
 import com.mochnoerfaizi0109.assesment_3_mopro.network.GoogleLoginRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +21,7 @@ enum class ApiStatus { LOADING, SUCCESS, FAILED }
 
 class MainViewModel : ViewModel() {
 
-    var data = mutableStateOf(emptyList<Buku>()) // Ganti ke Buku
+    var data = mutableStateOf(emptyList<Buku>())
         private set
     var status = MutableStateFlow(ApiStatus.LOADING)
         private set
@@ -32,7 +32,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val request = GoogleLoginRequest(token = googleIdToken)
-                val response = BukuApi.service.loginWithGoogle(request) // Ganti ke BukuApi
+                val response = BukuApi.service.loginWithGoogle(request)
                 onLoginSuccess(response)
             } catch (e: Exception) {
                 Log.e("MainViewModel", "Google Login Failure: ${e.message}")
@@ -45,7 +45,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             status.value = ApiStatus.LOADING
             try {
-                data.value = BukuApi.service.getBuku() // Ganti ke getBuku
+                data.value = BukuApi.service.getBuku()
                 status.value = ApiStatus.SUCCESS
             } catch (e: Exception) {
                 Log.e("MainViewModel", "Retrieve Failure: ${e.message}")
@@ -62,7 +62,7 @@ class MainViewModel : ViewModel() {
                 val penulisBukuBody = penulisBuku.toRequestBody("text/plain".toMediaTypeOrNull())
                 val gambarPart = bitmap.toMultipartBody()
 
-                BukuApi.service.addBuku(bearerToken, namaBukuBody, penulisBukuBody, gambarPart) // Ganti ke addBuku
+                BukuApi.service.addBuku(bearerToken, namaBukuBody, penulisBukuBody, gambarPart)
                 retrieveData()
             } catch (e: Exception) {
                 Log.e("MainViewModel", "Save Failure: ${e.message}")
@@ -72,7 +72,6 @@ class MainViewModel : ViewModel() {
     }
 
     fun updateData(authToken: String, bukuToUpdate: Buku, newName: String, newPenulis: String, newBitmap: Bitmap?) {
-        // Log ini untuk memastikan ID yang benar selalu terkirim
         Log.d("MainViewModel_DEBUG", "Attempting to update book with ID: ${bukuToUpdate.id}")
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -82,14 +81,12 @@ class MainViewModel : ViewModel() {
                 val penulisBukuBody = newPenulis.toRequestBody("text/plain".toMediaTypeOrNull())
                 val gambarPart = newBitmap?.toMultipartBody()
 
-                // Memanggil API. Jika model Buku.kt sudah benar, ini tidak akan error.
                 BukuApi.service.updateBuku(bearerToken, bukuToUpdate.id, namaBukuBody, penulisBukuBody, gambarPart)
 
-                // Karena tidak ada error, fungsi ini akan dieksekusi untuk me-refresh UI
                 retrieveData()
 
             } catch (e: Exception) {
-                // PERBAIKAN LOGGING: 'e' ditambahkan untuk melihat seluruh detail error
+
                 Log.e("MainViewModel", "Update Failure", e)
                 errorMessage.value = "Error updating: ${e.message}"
             }
@@ -100,7 +97,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val bearerToken = "Bearer $authToken"
-                val response = BukuApi.service.deleteBuku(bearerToken, bukuId) // Ganti ke deleteBuku
+                val response = BukuApi.service.deleteBuku(bearerToken, bukuId)
                 if (response.isSuccessful) {
                     retrieveData()
                 } else {
@@ -125,7 +122,7 @@ class MainViewModel : ViewModel() {
         errorMessage.value = null
     }
 
-    fun getBukuById(id: Int): Buku? { // Ganti ke getBukuById
+    fun getBukuById(id: Int): Buku? {
         return data.value.find { it.id == id }
     }
 }

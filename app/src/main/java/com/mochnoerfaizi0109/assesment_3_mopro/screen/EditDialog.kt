@@ -23,10 +23,9 @@ import com.mochnoerfaizi0109.assesment_3_mopro.model.Buku
 fun EditDialog(
     bukuToEdit: Buku,
     onDismissRequest: () -> Unit,
-    onConfirmation: (String, String) -> Unit // Menerima: namaBuku, penulisBuku
+    onConfirmation: (String, String) -> Unit
 ) {
-    // --- PERBAIKAN DI SINI ---
-    // Gunakan operator '?:' untuk memberikan string kosong "" jika nilainya null
+
     var namaBuku by remember { mutableStateOf(bukuToEdit.namaBuku ?: "") }
     var penulisBuku by remember { mutableStateOf(bukuToEdit.penulisBuku ?: "") }
 
@@ -86,7 +85,7 @@ fun EditDialog(
                         Text(text = stringResource(R.string.batal))
                     }
                     OutlinedButton(
-                        // Logika enabled Anda sudah menangani string kosong, jadi ini tetap aman
+
                         onClick = { onConfirmation(namaBuku, penulisBuku) },
                         enabled = namaBuku.isNotEmpty() && penulisBuku.isNotEmpty(),
                         modifier = Modifier.padding(8.dp)

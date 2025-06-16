@@ -56,7 +56,7 @@ fun ProfilDialog(
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     placeholder = painterResource(id = R.drawable.loading_img),
-                    // DIUBAH - Menggunakan drawable yang konsisten
+
                     error = painterResource(id = R.drawable.baseline_broken_image_24),
                     modifier = Modifier
                         .size(100.dp)
